@@ -1,6 +1,5 @@
 package org.abstruck.mirai.runtime;
 
-import org.abstruck.mirai.config.Config;
 
 public class ThreadManager {
     private static SenderThread runnableHandle = new SenderThread();

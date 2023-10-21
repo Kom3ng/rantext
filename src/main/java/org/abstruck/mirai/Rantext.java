@@ -1,9 +1,7 @@
 package org.abstruck.mirai;
 
-import net.mamoe.mirai.Mirai;
 import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
-import net.mamoe.mirai.utils.MiraiLogger;
 import org.abstruck.mirai.config.Config;
 import org.abstruck.mirai.runtime.ThreadManager;
 import org.abstruck.mirai.util.DatabaseUtils;

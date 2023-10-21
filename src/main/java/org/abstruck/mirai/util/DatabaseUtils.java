@@ -1,6 +1,5 @@
 package org.abstruck.mirai.util;
 
-import net.mamoe.mirai.Mirai;
 import net.mamoe.mirai.console.plugin.PluginManager;
 import net.mamoe.mirai.utils.MiraiLogger;
 import org.abstruck.mirai.Rantext;

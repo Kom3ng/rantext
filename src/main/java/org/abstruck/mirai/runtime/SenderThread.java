@@ -1,7 +1,6 @@
 package org.abstruck.mirai.runtime;
 
 import net.mamoe.mirai.Bot;
-import net.mamoe.mirai.Mirai;
 import net.mamoe.mirai.message.data.Image;
 import net.mamoe.mirai.message.data.MessageChain;
 import net.mamoe.mirai.message.data.MessageChainBuilder;
@@ -32,23 +31,21 @@ public class SenderThread implements Runnable{
                 Config.allowBotIds.get().stream()
                         .map(Bot::getInstanceOrNull)
                         .filter(Objects::nonNull)
-                        .forEach(bot -> {
-                            Config.allowGroupIds.get().stream()
-                                    .map(bot::getGroup)
-                                    .filter(Objects::nonNull)
-                                    .forEach(g -> {
-                                        try (ExternalResource externalResource = ExternalResource.create(new File(path))) {
-                                            Image image = g.uploadImage(externalResource);
-                                            MessageChainBuilder messageChainBuilder = new MessageChainBuilder();
-                                            messageChainBuilder.add(message);
-                                            messageChainBuilder.add(image);
-                                            MessageChain messageChain = messageChainBuilder.build();
-                                            g.sendMessage(messageChain);
-                                        } catch (IOException e){
-                                            Rantext.INSTANCE.getLogger().warning(e);
-                                        }
-                                    });
-                        });
+                        .forEach(bot -> Config.allowGroupIds.get().stream()
+                                .map(bot::getGroup)
+                                .filter(Objects::nonNull)
+                                .forEach(g -> {
+                                    try (ExternalResource externalResource = ExternalResource.create(new File(path))) {
+                                        Image image = g.uploadImage(externalResource);
+                                        MessageChainBuilder messageChainBuilder = new MessageChainBuilder();
+                                        messageChainBuilder.add(message);
+                                        messageChainBuilder.add(image);
+                                        MessageChain messageChain = messageChainBuilder.build();
+                                        g.sendMessage(messageChain);
+                                    } catch (IOException e){
+                                        Rantext.INSTANCE.getLogger().warning(e);
+                                    }
+                                }));
             } catch (InterruptedException e) {
                 return;
             }
